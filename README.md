@@ -50,9 +50,9 @@ porque con `int` el factorial se desborda desde el 13.
 
 **4) Línea temporal**
 
-![cronología](img/linea_temporal.png)
+![cronología](img/cronologia.png)
 
-Medí los tiempos en una ejecución (en microsegundos). El `main` crea los 5
+Tiempos medidos en una ejecución. El `main` crea los 5
 threads, que van empezando uno detrás de otro, y luego espera con los `join`
 hasta que acaba el último.
 
