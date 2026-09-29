@@ -7,3 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Threads REQUIRED)
 add_executable(threads src/main.cpp)
 target_link_libraries(threads Threads::Threads)
+
+add_executable(hello src/hello.cpp)
+target_link_libraries(hello Threads::Threads)
