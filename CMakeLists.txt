@@ -10,3 +10,6 @@ target_link_libraries(threads Threads::Threads)
 
 add_executable(hello src/hello.cpp)
 target_link_libraries(hello Threads::Threads)
+
+add_executable(Practica3_1 src/Practica3_1/Practica3_1.cpp)
+target_link_libraries(Practica3_1 Threads::Threads)
