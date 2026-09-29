@@ -1,23 +1,30 @@
 # cpp-threads-basico
 
-Ejemplo muy básico de threads en C++17: se crean varios `std::thread`, todos
-suman a un contador compartido protegido con `std::mutex` y `std::lock_guard`,
-y al final se hace `join` de cada hilo.
+Práctica 1 (guiada): primer programa multithreading en C++17.
 
-Compilar y ejecutar:
+El programa está en `src/Practica3_1/Practica3_1.cpp`. Lanza 5 threads que
+ejecutan `greeting(id)` y espera a que terminen.
 
     cmake -S . -B build
     cmake --build build
-    ./build/threads
+    ./build/Practica3_1
 
-Debería imprimir `contador = 400000 (esperado 400000)`.
+![salida](img/practica3_1.png)
 
-`./build/hello` es la versión de hola mundo con 5 hilos.
+**1) ¿Cómo lanzas los threads?**
+Creo un `std::thread` pasándole la función y su id, y lo guardo en un
+`vector`. Se hace dentro de un bucle, así salen 5 seguidos.
 
-Salida de `threads`:
+**2) ¿Cómo esperas a que terminen?**
+Con `join()` en otro bucle aparte, después de lanzarlos todos. Hasta que no
+acaban los 5, el `main` no sigue.
 
-![threads](img/threads.png)
+**3) ¿Qué llama la atención?**
+El orden no es siempre el mismo y a veces las líneas salen mezcladas, porque
+los threads escriben en `cout` a la vez. Los ids reales son distintos en cada
+thread y cambian en cada ejecución.
 
-Salida de `hello`:
+## Otros archivos
 
-![hello](img/hello.png)
+`src/main.cpp` y `src/hello.cpp` son pruebas mías de antes (contador con
+mutex y un hola mundo simple). La práctica es la de `Practica3_1`.
