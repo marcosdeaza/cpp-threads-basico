@@ -48,17 +48,13 @@ Los resultados no salen en orden y a veces se mezclan dos líneas, como en la
 primera práctica. Cada thread termina cuando le toca. Uso `unsigned long long`
 porque con `int` el factorial se desborda desde el 13.
 
-**4) Línea temporal** (el tiempo va hacia la derecha):
+**4) Línea temporal**
 
-    main  |crea T1..T5|-- join T1 -- join T2 -- ... -- join T5 --|fin
-    T1 5!             |###|
-    T2 8!             |####|
-    T3 12!            |#####|
-    T4 15!            |######|
-    T5 20!            |#######|
+![cronología](img/linea_temporal.png)
 
-Los 5 threads nacen casi a la vez desde el `main`. Los `join` hacen que el
-`main` espere a que acabe el último.
+Medí los tiempos en una ejecución (en microsegundos). El `main` crea los 5
+threads, que van empezando uno detrás de otro, y luego espera con los `join`
+hasta que acaba el último.
 
 ## Prueba anterior
 
