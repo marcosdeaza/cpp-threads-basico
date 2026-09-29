@@ -36,7 +36,7 @@ número distinto (5, 8, 12, 15 y 20).
 ![salida](img/practica3_2.png)
 
 **1) ¿Cómo lanzas los threads y les pasas el número?**
-Creo un `std::thread` por número: `std::thread t1(factorial, 5);`. La función
+Creo un `std::thread` por número: `thread t1(factorial, 5);`. La función
 va primero y el número después, como argumento.
 
 **2) ¿Cómo esperas a que terminen?**

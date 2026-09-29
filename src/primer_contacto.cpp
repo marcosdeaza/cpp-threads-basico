@@ -2,13 +2,14 @@
 #include <mutex>
 #include <thread>
 #include <vector>
+using namespace std;
 
 int contador = 0;
-std::mutex m;
+mutex m;
 
 void sumar(int veces) {
     for (int i = 0; i < veces; ++i) {
-        std::lock_guard<std::mutex> lock(m);
+        lock_guard<mutex> lock(m);
         ++contador;
     }
 }
@@ -17,7 +18,7 @@ int main() {
     const int hilos = 4;
     const int veces = 100000;
 
-    std::vector<std::thread> lista;
+    vector<thread> lista;
     for (int i = 0; i < hilos; ++i) {
         lista.emplace_back(sumar, veces);
     }
@@ -27,7 +28,7 @@ int main() {
         t.join();
     }
 
-    std::cout << "contador = " << contador
+    cout << "contador = " << contador
               << " (esperado " << hilos * veces << ")\n";
     return 0;
 }
