@@ -11,3 +11,13 @@ Compilar y ejecutar:
     ./build/threads
 
 Debería imprimir `contador = 400000 (esperado 400000)`.
+
+`./build/hello` es la versión de hola mundo con 5 hilos.
+
+Salida de `threads`:
+
+![threads](img/threads.png)
+
+Salida de `hello`:
+
+![hello](img/hello.png)
