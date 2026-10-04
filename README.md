@@ -91,13 +91,27 @@ Con `detach()` el thread se independiza: ya no se puede hacer `join()` y el
 threads, aunque no hayan acabado.
 
 **Con `sleep_for(500 ms)`**
+
+![salida 500 ms](img/practica3_4_500ms.png)
+
 El `main` termina a los 500 ms, antes de que el hilo de fondo acabe sus 2000 ms.
 El programa se cierra y el hilo muere a mitad, así que nunca sale el mensaje
 "tarea larga completada".
 
 **Con `sleep_for(3000 ms)`**
+
+![salida 3000 ms](img/practica3_4_3000ms.png)
+
 Ahora el `main` espera 3000 ms, más que los 2000 del hilo. La tarea termina,
 escribe su mensaje y después acaba el `main`.
+
+**Línea temporal con 500 ms**
+
+![cronología 500 ms](img/cronologia_4_500ms.png)
+
+**Línea temporal con 3000 ms**
+
+![cronología 3000 ms](img/cronologia_4_3000ms.png)
 
 **Conclusión**
 `detach()` no hace que el thread viva más que el programa, solo quita la
