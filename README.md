@@ -56,6 +56,60 @@ Tiempos medidos en una ejecución. El `main` crea los 5
 threads, que van empezando uno detrás de otro, y luego espera con los `join`
 hasta que acaba el último.
 
+## Práctica 3: paralelización
+
+`src/Practica3_3.cpp` suma un vector de 1.000.000 de enteros (del 1 al
+1.000.000) con 4 threads. Cada thread suma un cuarto del vector (250.000
+números) y guarda el resultado en su casilla de `parciales`. Al final el
+`main` suma los 4 parciales.
+
+    ./build/Practica3_3
+
+    Parcial 0: 31250125000
+    Parcial 1: 93750125000
+    Parcial 2: 156250125000
+    Parcial 3: 218750125000
+    Suma total: 500000500000
+
+El resultado coincide con la fórmula n(n+1)/2 = 500.000.500.000.
+
+**¿Por qué no hace falta mutex?**
+Cada thread solo lee su tramo y solo escribe en su casilla de `parciales`, así
+que nunca hay dos threads tocando lo mismo. La suma final la hace el `main`
+después de los `join`.
+
+**¿Para qué sirve `ref(datos)`?**
+Sin `ref`, el thread haría una copia del vector de un millón de números.
+Con `ref` usa el original.
+
+**Línea temporal**
+
+![cronología](img/cronologia_3.png)
+
+## Práctica 4: `detach()`
+
+`src/Practica3_4.cpp` lanza un thread con una tarea larga de 2 segundos, le
+hace `detach()` y el `main` espera un rato antes de terminar.
+
+Con `detach()` el thread se independiza: ya no se puede hacer `join()` y el
+`main` no lo espera. Pero sigue siendo parte del programa, así que cuando el
+`main` llega al `return` el programa termina y se lleva por delante a todos los
+threads, aunque no hayan acabado.
+
+**Con `sleep_for(500 ms)`**
+El `main` termina a los 500 ms, antes de que el hilo de fondo acabe sus 2000 ms.
+El programa se cierra y el hilo muere a mitad, así que nunca sale el mensaje
+"tarea larga completada".
+
+**Con `sleep_for(3000 ms)`**
+Ahora el `main` espera 3000 ms, más que los 2000 del hilo. La tarea termina,
+escribe su mensaje y después acaba el `main`.
+
+**Conclusión**
+`detach()` no hace que el thread viva más que el programa, solo quita la
+posibilidad de esperarlo con `join()`. Esperar con `sleep_for` y adivinar el
+tiempo no es fiable; si necesito que el thread acabe, tengo que usar `join()`.
+
 ## Prueba anterior
 
 `src/primer_contacto.cpp` es una prueba mía de antes: un contador compartido
