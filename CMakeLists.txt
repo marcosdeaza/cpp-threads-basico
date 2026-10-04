@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Threads REQUIRED)
 
-foreach(nombre primer_contacto Practica3_1 Practica3_2 Practica3_3)
+foreach(nombre primer_contacto Practica3_1 Practica3_2 Practica3_3 Practica3_4)
     add_executable(${nombre} src/${nombre}.cpp)
     target_link_libraries(${nombre} Threads::Threads)
 endforeach()
