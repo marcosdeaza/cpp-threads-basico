@@ -63,13 +63,7 @@ hasta que acaba el último.
 números) y guarda el resultado en su casilla de `parciales`. Al final el
 `main` suma los 4 parciales.
 
-    ./build/Practica3_3
-
-    Parcial 0: 31250125000
-    Parcial 1: 93750125000
-    Parcial 2: 156250125000
-    Parcial 3: 218750125000
-    Suma total: 500000500000
+![salida](img/practica3_3.png)
 
 El resultado coincide con la fórmula n(n+1)/2 = 500.000.500.000.
 
